@@ -91,17 +91,17 @@ class App extends Component  {
                 Filter by
                   <ul>
                     <li>
-                      <a className="has-text-secondary"  onClick={() => this.fetchAllTasks()}>
+                      <a className="has-text-link"  onClick={() => this.fetchAllTasks()}>
                         All Tasks
                       </a>
                     </li>
                     <li>
-                      <a className="has-text-secondary"  onClick={() => this.fetchCompletedTasks()}>
+                      <a className="has-text-link"  onClick={() => this.fetchCompletedTasks()}>
                         Complete Tasks
                       </a>
                     </li>
                     <li>
-                      <a className="has-text-secondary" onClick={() => this.fetchIncompletedTasks()}>
+                      <a className="has-text-link" onClick={() => this.fetchIncompletedTasks()}>
                         Incomplete Tasks
                       </a>
                     </li>
