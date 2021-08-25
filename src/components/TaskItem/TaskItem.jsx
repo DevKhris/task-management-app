@@ -1,14 +1,18 @@
 import React, { Component } from "react";
+import axios from 'axios';
 
 import './TaskItem.css';
 
 import TaskModal from '../TaskModal/TaskModal.jsx';
 
+const API = `http://localhost:8000/tasks`;
+
 class TaskItem extends Component {
 
 	async deleteTask(id) {
 		try {
-			alert(id);
+			let response = await axios.delete(`${API}/${id}/delete`);
+			await this.props.onRefresh();
 		} catch(error) {
 			console.error(error);
 		}
@@ -35,7 +39,7 @@ class TaskItem extends Component {
 	}
 
 	render(props)
-	{
+	{	
 		const completedDate = this.isCompleted(this.props.task.status);
 		return(
 			<div className="my-3 border-secondary">

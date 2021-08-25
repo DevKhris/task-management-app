@@ -7,7 +7,7 @@ class TaskModal extends Component {
 		let elm = document.querySelector("#m" + id);
 		let html = document.querySelector('html');
 		elm.classList.remove('is-active');
-		html.classList.add('is-clipped');
+		html.classList.remove('is-clipped');
 	}
 
 	render(props)

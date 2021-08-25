@@ -18,8 +18,9 @@ class App extends Component  {
 
     this.state = {
       tasks: [],
+      mode: ""
     };
-
+    this.refreshTask = this.refreshTask.bind(this);
   }
 
   componentDidMount()
@@ -31,7 +32,8 @@ class App extends Component  {
   {
     try {
       let response = await axios.get(API);
-      this.setState({ tasks: response.data })
+      this.setState({ tasks: response.data });
+      this.setState({ mode: ""});
     } catch (error) {
       console.error(error);
     }
@@ -39,9 +41,10 @@ class App extends Component  {
 
   async fetchIncompletedTasks()
   {
-    try {
+    try {  
       let response = await axios.get(`${API}/incompleted`);
-      this.setState({ tasks: response.data })
+      this.setState({ tasks: response.data });
+      this.setState({ mode: "incompleted"})
     } catch (error) {
       console.error(error);
     }
@@ -51,12 +54,24 @@ class App extends Component  {
   {
     try {
         let response = await axios.get(`${API}/completed`);
-        this.setState({ tasks: response.data })
+        this.setState({ tasks: response.data });
+        this.setState({ mode: "completed"});
     } catch (error) {
       console.error(error);
     }
   }
 
+  async refreshTask()
+  {
+    try {  
+        let mode = this.state.mode;
+        let response = await axios.get(`${API}/${mode}`);
+        this.setState({ tasks: response.data });
+        this.setState({ mode: mode })
+    } catch (error) {
+      console.error(error);
+    }   
+  }
   render()
   {
     return (
@@ -82,7 +97,7 @@ class App extends Component  {
                   <a href="#" className="has-text-right button is-info is-rounded mx-1">
                       Create Task +
                   </a>
-                  <a href="#" className="has-text-right button is-primary is-rounded mx-1">
+                  <a href="#" className="has-text-right button is-primary is-rounded mx-1" onClick={() => this.refreshTask()}>
                       Refresh
                   </a>
                 </div>
@@ -110,7 +125,7 @@ class App extends Component  {
             </div>
             <div className="column is-fifth-quarters">
               <div className="box">
-                <TaskList tasks={this.state.tasks}/>
+                <TaskList tasks={this.state.tasks} onRefresh={this.refreshTask}/>
               </div>
             </div>
             <div className="column is-one-quarter">
