@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import TaskItem from '../TaskItem/TaskItem.jsx';
+
 class TaskList extends Component {
 
 	render()
@@ -11,17 +13,7 @@ class TaskList extends Component {
 			    	<p className="has-text-left">Task List ({tasks.length}) </p>
 			    	<div className="box">
 			    	 	{tasks.map((task, index) => (
-			    	 		<div>
-			    	 			{task.name}
-			    	 			<time>
-			    	 				{task.completed_at}
-			    	 			</time>
-			    	 			<form action="">
-			    	 			</form>
-			    	 			<form action="">
-			    	 			<input className="button is-danger" type="submit" value="Delete"/>
-			    	 			</form>
-			    	 		</div>
+			    	 		<TaskItem task={task} />
                   		))}
 			    	</div>
 			    </div>
