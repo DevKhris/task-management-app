@@ -9,6 +9,12 @@ const API = `http://localhost:8000/tasks`;
 
 class TaskItem extends Component {
 
+	componentDidMount()
+	{
+		const status = this.props.task.status == 1 ? true : false;
+		this.props.task.status = status;
+	}
+
 	async deleteTask(id) {
 		try {
 			let response = await axios.delete(`${API}/${id}/delete`);
@@ -18,10 +24,47 @@ class TaskItem extends Component {
 		}
 	}
 
-	isCompleted(status)
+	async updateTask(task, status) {
+		try	{
+			console.log(status);
+			let date = status === 1 ? new Date().toJSON().replaceAll("T"," ").replace("Z","") : null;
+			console.log(date);
+			let data = { 
+					id: task.id,
+					status: status, 
+					completed_at: date 
+			}
+			let response = await axios.put(
+				`${API}/${task.id}/update`,
+				data
+			);
+			await this.props.onRefresh();	
+		} catch(error) {
+			console.error(error);
+		}
+	}
+
+	changeTaskStatus() 
 	{
-		const completed = status;
-		if(completed) {
+		if(this.props.task.status == true) {
+			return 0;
+		}  else {
+			return 1;
+		}	
+	}
+
+	isCompleted()
+	{
+		if(this.props.task.status == true) {
+			return true;
+		}  else {
+			return false;
+		}
+	}
+
+	getCompletedDate()
+	{
+		if(this.isCompleted()) {
 			return (
 				<p>
 					Completion date: {this.props.task.completed_at}
@@ -30,7 +73,7 @@ class TaskItem extends Component {
 		}
 	}
 
-	showModal(task)
+	showModal(task, mode = '#m')
 	{
 		let elm = document.querySelector('#m' + task.id);
 		let html = document.querySelector('html');
@@ -40,7 +83,6 @@ class TaskItem extends Component {
 
 	render(props)
 	{	
-		const completedDate = this.isCompleted(this.props.task.status);
 		return(
 			<div className="my-3 border-secondary">
 				<TaskModal task={this.props.task}/>
@@ -48,9 +90,10 @@ class TaskItem extends Component {
 					<figure className="media-left">
 						<input 
 							className="is-check" 
-							checked={this.props.task.status ? true : false} 
 							type="checkbox"
-							id="task-status"
+							id={"task-status-" + this.props.task.id }
+							onChange={() => this.updateTask(this.props.task, this.changeTaskStatus())}
+							checked={this.isCompleted()}
 						/>
 					</figure>
 				   	<div className="media-content">
@@ -58,7 +101,7 @@ class TaskItem extends Component {
 				   			<a className="has-text-secondary" onClick={() => this.showModal(this.props.task)}>
 				   				{this.props.task.name}
 				   			</a>
-				   			{completedDate}
+				   			{this.getCompletedDate()}
 				   			<p>
 				   				Status:
 				   				{
@@ -71,15 +114,22 @@ class TaskItem extends Component {
 				   		</div>
 				   	</div>
 			    	<div className="media-right">
-			    			<label htmlFor="delete">
-
-			    			</label>
+			    		<div className="level">
+			    			<input
+			    	 			name="edit"
+			    	 			className="button is-small is-primary is-rounded mx-1" 
+			    	 			type="submit" 
+			    	 			onClick={() => this.editTask(this.props.task)}
+			    	 			value="Edit"
+			    	 		/>	    	
 			    	 		<input
 			    	 			name="delete"
-			    	 			className="delete" 
+			    	 			className="button is-small is-danger is-rounded mx-1" 
 			    	 			type="submit" 
 			    	 			onClick={() => this.deleteTask(this.props.task.id)}
-			    	 		/>	    	
+			    	 			value="Delete"
+			    	 		/>	
+			    		</div>	
 			    	</div>
 			    </article>
 			</div>
