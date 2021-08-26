@@ -8,6 +8,7 @@ import './App.css';
 // Components
 import Navbar from "./Navbar/Navbar.jsx";
 import TaskList from './TaskList/TaskList.jsx';
+import CreateTaskModal from './CreateTaskModal/CreateTaskModal.jsx';
 
 const API = `http://localhost:8000/tasks`;
 
@@ -72,6 +73,30 @@ class App extends Component  {
       console.error(error);
     }   
   }
+
+  showModal()
+  {
+    let elm = document.querySelector("#create-modal");
+    let html = document.querySelector('html');
+    elm.classList.add('is-active');
+    html.classList.add('is-clipped');
+  }
+
+  async searchTask() {
+    try {
+      let search = document.querySelector("#task-search");
+      let data = {
+          search: search.value
+      };
+      let response = await axios.post(
+        `${API}/search`,
+        data
+      );
+      this.setState({ tasks: response.data });
+    } catch(error) {
+      console.error(error);
+    }
+  }
   render()
   {
     return (
@@ -91,15 +116,24 @@ class App extends Component  {
             <div className="column is-one-quarter">
               <div className="box">
                 <div className="card">
-                  <div className="card-title">
-                      Actions
+                  <div className="card-header">
+                      <p className="card-title">
+                        Actions
+                      </p>
                   </div>
-                  <a href="#" className="has-text-right button is-info is-rounded mx-1">
-                      Create Task +
-                  </a>
-                  <a href="#" className="has-text-right button is-primary is-rounded mx-1" onClick={() => this.refreshTask()}>
-                      Refresh
-                  </a>
+                  <br/>
+                  <div className="card-body columns">
+                    <div>
+                      <a href="#" className="has-text-right button is-info is-rounded mx-1" onClick={() => this.showModal()}>
+                        Create Task +
+                      </a>
+                    </div>          
+                    <div>
+                      <a href="#" className="has-text-right button is-primary is-rounded mx-1" onClick={() => this.refreshTask()}>
+                        Refresh
+                      </a>
+                     </div> 
+                  </div>
                 </div>
               </div>
               <div className="box">
@@ -125,6 +159,7 @@ class App extends Component  {
             </div>
             <div className="column is-fifth-quarters">
               <div className="box">
+                <CreateTaskModal onRefresh={this.refreshTask}/>
                 <TaskList tasks={this.state.tasks} onRefresh={this.refreshTask}/>
               </div>
             </div>
@@ -133,8 +168,19 @@ class App extends Component  {
               <div className="box">
                  Search
                 <form className="inline" action="">
-                  <input className="input border-secondary is-rounded" type="text" placeholder="Search Task by Name"/>
-                  <input className="button is-secondary border-secondary is-rounded is-fullwidth" type="submit" value="Search"/>
+                  <input 
+                      className="input border-secondary is-rounded" 
+                      type="text" 
+                      placeholder="Search Task by Name"
+                      defaultValue=""
+                      id="task-search"
+                      onChange={() => this.searchTask()}
+                    />
+                  <input
+                      className="button is-secondary border-secondary is-rounded is-fullwidth" 
+                      type="submit" 
+                      value="Search"
+                  />
                 </form>
               </div>
             </div>

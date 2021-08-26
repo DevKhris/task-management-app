@@ -4,6 +4,7 @@ import axios from 'axios';
 import './TaskItem.css';
 
 import TaskModal from '../TaskModal/TaskModal.jsx';
+import EditTaskModal from '../EditTaskModal/EditTaskModal.jsx';
 
 const API = `http://localhost:8000/tasks`;
 
@@ -26,9 +27,7 @@ class TaskItem extends Component {
 
 	async updateTask(task, status) {
 		try	{
-			console.log(status);
 			let date = status === 1 ? new Date().toJSON().replaceAll("T"," ").replace("Z","") : null;
-			console.log(date);
 			let data = { 
 					id: task.id,
 					status: status, 
@@ -75,7 +74,7 @@ class TaskItem extends Component {
 
 	showModal(task, mode = '#m')
 	{
-		let elm = document.querySelector('#m' + task.id);
+		let elm = document.querySelector(mode + task.id);
 		let html = document.querySelector('html');
 		elm.classList.add('is-active');
 		html.classList.add('is-clipped');
@@ -85,6 +84,7 @@ class TaskItem extends Component {
 	{	
 		return(
 			<div className="my-3 border-secondary">
+				<EditTaskModal task={this.props.task} onRefresh={this.props.onRefresh}/>
 				<TaskModal task={this.props.task}/>
 				<article className="media">
 					<figure className="media-left">
@@ -93,6 +93,7 @@ class TaskItem extends Component {
 							type="checkbox"
 							id={"task-status-" + this.props.task.id }
 							onChange={() => this.updateTask(this.props.task, this.changeTaskStatus())}
+							defaultChecked={this.props.task.status}
 							checked={this.isCompleted()}
 						/>
 					</figure>
@@ -119,7 +120,7 @@ class TaskItem extends Component {
 			    	 			name="edit"
 			    	 			className="button is-small is-primary is-rounded mx-1" 
 			    	 			type="submit" 
-			    	 			onClick={() => this.editTask(this.props.task)}
+			    	 			onClick={() => this.showModal(this.props.task, '#e')}
 			    	 			value="Edit"
 			    	 		/>	    	
 			    	 		<input
