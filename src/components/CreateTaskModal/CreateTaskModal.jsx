@@ -50,20 +50,20 @@ class CreateTaskModal extends Component {
 	render(props)
 	{
 		return(
-			<div class="modal" id="create-modal">
-  				<div class="modal-background" onClick={() => this.closeModal()}></div>
-  				<div class="modal-card">
-    				<header class="modal-card-head">
-      					<p class="modal-card-title">
+			<div className="modal" id="create-modal">
+  				<div className="modal-background" onClick={() => this.closeModal()}></div>
+  				<div className="modal-card">
+    				<header className="modal-card-head">
+      					<p className="modal-card-title">
       						Create Task 
       					</p>
-      					<button class="delete" 
+      					<button className="delete" 
       						aria-label="close" 
       						onClick={() => this.closeModal()}
       					>	
       					</button>
     				</header>
-    				<section class="modal-card-body">
+    				<section className="modal-card-body">
     				    <label htmlFor="name">
     						Task Name
     					</label>	
@@ -91,7 +91,7 @@ class CreateTaskModal extends Component {
     						Task Date
     					</label>	
       					<div className="columns">
-    						<div class="column">
+    						<div className="column">
     							<input 
       								className="input" 
       								type="date" 
@@ -100,7 +100,7 @@ class CreateTaskModal extends Component {
       								defaultValue=""
       							/>	
     						</div>
-    						<div class="column"> 						      					
+    						<div className="column"> 						      					
       							<input 
       								className="input" 
       								type="time" 
@@ -127,7 +127,7 @@ class CreateTaskModal extends Component {
 							/>	 
       					</span>
     				</section>
-    				<div class="modal-card-foot">
+    				<div className="modal-card-foot">
     					<input className="button is-info is-rounded" type="button" value="Update" onClick={() => this.createTask()}/>
     				</div>
   				</div>

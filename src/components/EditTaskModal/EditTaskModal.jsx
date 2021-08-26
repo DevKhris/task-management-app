@@ -7,7 +7,7 @@ class EditTaskModal extends Component {
 
 	closeModal(id)
 	{
-		let elm = document.querySelector("#e" + id);
+		let elm = document.querySelector("#e-" + id);
 		let html = document.querySelector('html');
 		elm.classList.remove('is-active');
 		html.classList.remove('is-clipped');
@@ -50,20 +50,20 @@ class EditTaskModal extends Component {
 	render(props)
 	{
 		return(
-			<div class="modal" id={"e" + this.props.task.id}>
-  				<div class="modal-background" onClick={() => this.closeModal(this.props.task.id)}></div>
-  				<div class="modal-card">
-    				<header class="modal-card-head">
-      					<p class="modal-card-title">
+			<div className="modal" id={"e-" + this.props.task.id}>
+  				<div className="modal-background" onClick={() => this.closeModal(this.props.task.id)}></div>
+  				<div className="modal-card">
+    				<header className="modal-card-head">
+      					<p className="modal-card-title">
       						Edit Task 
       					</p>
-      					<button class="delete" 
+      					<button className="delete" 
       						aria-label="close" 
       						onClick={() => this.closeModal(this.props.task.id)}
       					>	
       					</button>
     				</header>
-    				<section class="modal-card-body">
+    				<section className="modal-card-body">
 
     				    <label htmlFor="name">
     						Task Name
@@ -97,7 +97,7 @@ class EditTaskModal extends Component {
     						Task Date
     					</label>
     					<div className="columns">
-    						<div class="column">
+    						<div className="column">
     							<input 
       								className="input" 
       								type="date" 
@@ -106,7 +106,7 @@ class EditTaskModal extends Component {
       								defaultValue={this.props.task.completed_at}
       							/>	
     						</div>
-    						<div class="column"> 						      					
+    						<div className="column"> 						      					
       							<input 
       								className="input" 
       								type="time" 
@@ -133,7 +133,7 @@ class EditTaskModal extends Component {
 							/>	 
       					</span>
     				</section>
-    				<div class="modal-card-foot">
+    				<div className="modal-card-foot">
     					<input className="button is-info is-rounded" type="button" value="Update" onClick={() => this.updateTask()}/>
     				</div>
   				</div>

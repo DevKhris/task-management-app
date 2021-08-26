@@ -4,9 +4,9 @@ const Navbar = () => {
 	return (
 		<nav className="navbar" role="navigation" aria-label="main navigation">
 			<div className="navbar-brand">
-				<a className="navbar-item">
+				<p className="navbar-item">
 					Task App
-				</a>
+				</p>
 			</div>
 			<div className="navbar-menu" id="mainMenu">
 				<div className="navbar-start">

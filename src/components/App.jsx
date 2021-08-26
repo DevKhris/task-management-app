@@ -19,14 +19,14 @@ class App extends Component  {
 
     this.state = {
       tasks: [],
-      mode: ""
+      mode: "incompleted"
     };
     this.refreshTask = this.refreshTask.bind(this);
   }
 
   componentDidMount()
   {
-    this.fetchIncompletedTasks();
+      this.refreshTask();
   }
 
   async fetchAllTasks()
@@ -66,9 +66,13 @@ class App extends Component  {
   {
     try {  
         let mode = this.state.mode;
-        let response = await axios.get(`${API}/${mode}`);
-        this.setState({ tasks: response.data });
-        this.setState({ mode: mode })
+        if(mode = "search") {
+          this.searchTask();
+        } else {
+            let response = await axios.get(`${API}/${mode}`);
+            this.setState({ tasks: response.data });
+            this.setState({ mode: mode })
+      }
     } catch (error) {
       console.error(error);
     }   
@@ -97,6 +101,7 @@ class App extends Component  {
       console.error(error);
     }
   }
+
   render()
   {
     return (

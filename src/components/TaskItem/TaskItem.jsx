@@ -93,7 +93,6 @@ class TaskItem extends Component {
 							type="checkbox"
 							id={"task-status-" + this.props.task.id }
 							onChange={() => this.updateTask(this.props.task, this.changeTaskStatus())}
-							defaultChecked={this.props.task.status}
 							checked={this.isCompleted()}
 						/>
 					</figure>
@@ -120,7 +119,7 @@ class TaskItem extends Component {
 			    	 			name="edit"
 			    	 			className="button is-small is-primary is-rounded mx-1" 
 			    	 			type="submit" 
-			    	 			onClick={() => this.showModal(this.props.task, '#e')}
+			    	 			onClick={() => this.showModal(this.props.task, '#e-')}
 			    	 			value="Edit"
 			    	 		/>	    	
 			    	 		<input

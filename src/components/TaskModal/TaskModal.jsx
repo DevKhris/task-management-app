@@ -13,20 +13,20 @@ class TaskModal extends Component {
 	render(props)
 	{
 		return(
-			<div class="modal" id={"m" + this.props.task.id}>
-  			<div class="modal-background" onClick={() => this.closeModal(this.props.task.id)}></div>
-  			<div class="modal-card">
-    		<header class="modal-card-head">
-      			<p class="modal-card-title">
+			<div className="modal" id={"m" + this.props.task.id}>
+  			<div className="modal-background" onClick={() => this.closeModal(this.props.task.id)}></div>
+  			<div className="modal-card">
+    		<header className="modal-card-head">
+      			<p className="modal-card-title">
       				{this.props.task.name}
       			</p>
-      			<button class="delete" 
+      			<button className="delete" 
       				aria-label="close" 
       				onClick={() => this.closeModal(this.props.task.id)}
       			>	
       			</button>
     		</header>
-    		<section class="modal-card-body">
+    		<section className="modal-card-body">
       			<p>
       				{this.props.task.body}
       			</p>
