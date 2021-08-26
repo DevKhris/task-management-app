@@ -10,7 +10,7 @@ import Navbar from "./Navbar/Navbar.jsx";
 import TaskList from './TaskList/TaskList.jsx';
 import CreateTaskModal from './CreateTaskModal/CreateTaskModal.jsx';
 
-const API = `http://localhost:8000/tasks`;
+const API = `http://localhost:8000/v1/tasks`;
 
 class App extends Component  {
 
@@ -180,6 +180,7 @@ class App extends Component  {
                       className="button is-secondary border-secondary is-rounded is-fullwidth" 
                       type="submit" 
                       value="Search"
+                      onClick={() => this.searchTask()}
                   />
                 </form>
               </div>

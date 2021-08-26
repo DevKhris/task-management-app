@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 
-const API = `http://localhost:8000/tasks`;
+const API = `http://localhost:8000/v1/tasks`;
 
 class CreateTaskModal extends Component {
 

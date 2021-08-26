@@ -6,7 +6,7 @@ import './TaskItem.css';
 import TaskModal from '../TaskModal/TaskModal.jsx';
 import EditTaskModal from '../EditTaskModal/EditTaskModal.jsx';
 
-const API = `http://localhost:8000/tasks`;
+const API = `http://localhost:8000/v1/tasks`;
 
 class TaskItem extends Component {
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 
-const API = `http://localhost:8000/tasks`;
+const API = `http://localhost:8000/v1/tasks`;
 
 class EditTaskModal extends Component {
 
@@ -15,11 +15,11 @@ class EditTaskModal extends Component {
 
 	getFormData()
 	{
-		let name = document.querySelector("#task-name");
-		let body = document.querySelector("#task-body");
-		let status = document.querySelector("#task-status");
-		let date = document.querySelector("#task-date");
-		let time = document.querySelector("#task-time");
+		let name = document.querySelector("#current-name");
+		let body = document.querySelector("#current-body");
+		let status = document.querySelector("#current-status");
+		let date = document.querySelector("#current-date");
+		let time = document.querySelector("#current-time");
 		let datetime = date.value + " " + time.value;
 
 		let data = {
@@ -73,7 +73,7 @@ class EditTaskModal extends Component {
       						type="name" 
       						name="completed_at" 
       						defaultValue={this.props.task.name}
-      						id="task-name"
+      						id="current-name"
       					/>
        					<br/>   					
       					<br/>
@@ -83,7 +83,7 @@ class EditTaskModal extends Component {
       					<textarea
       						className="input textarea" 
       						name="body" 
-      						id="task-body" 
+      						id="current-body" 
       						cols="20" 
       						rows="10"
       						defaultValue={this.props.task.body}
@@ -102,7 +102,7 @@ class EditTaskModal extends Component {
       								className="input" 
       								type="date" 
       								name="completed_at" 
-      								id="task-date" 
+      								id="current-date" 
       								defaultValue={this.props.task.completed_at}
       							/>	
     						</div>
@@ -111,7 +111,7 @@ class EditTaskModal extends Component {
       								className="input" 
       								type="time" 
       								name="completed_at" 
-      								id="task-time" 
+      								id="current-time" 
       								defaultValue={this.props.task.completed_at}
       							/>
     						</div>
@@ -128,7 +128,7 @@ class EditTaskModal extends Component {
 								className="checkbox is-check" 
 								type="checkbox"
 								name="status"
-								id="task-status"
+								id="current-status"
 								defaultChecked={this.props.task.status}
 							/>	 
       					</span>
