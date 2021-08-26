@@ -120,26 +120,19 @@ class App extends Component  {
           <div className="columns">
             <div className="column is-one-quarter">
               <div className="box">
-                <div className="card">
-                  <div className="card-header">
-                      <p className="card-title">
-                        Actions
-                      </p>
-                  </div>
-                  <br/>
-                  <div className="card-body columns">
-                    <div>
-                      <a href="#" className="has-text-right button is-info is-rounded mx-1" onClick={() => this.showModal()}>
-                        Create Task +
-                      </a>
-                    </div>          
-                    <div>
-                      <a href="#" className="has-text-right button is-primary is-rounded mx-1" onClick={() => this.refreshTask()}>
-                        Refresh
-                      </a>
-                     </div> 
-                  </div>
-                </div>
+                <p>
+                   Actions
+                </p>
+                <br/>
+                <div className="">
+                  <a href="#" className="button is-fullwidth is-small is-info is-rounded mx-1" onClick={() => this.showModal()}>
+                      Create Task +
+                  </a>
+                  <br/> 
+                  <a href="#" className="button is-fullwidth is-small is-primary is-rounded mx-1" onClick={() => this.refreshTask()}>
+                      Refresh
+                  </a>   
+                </div>     
               </div>
               <div className="box">
                 Filter by
@@ -172,7 +165,7 @@ class App extends Component  {
 
               <div className="box">
                  Search
-                <form className="inline" action="">
+                <div className="inline">
                   <input 
                       className="input border-secondary is-rounded" 
                       type="text" 
@@ -181,13 +174,14 @@ class App extends Component  {
                       id="task-search"
                       onChange={() => this.searchTask()}
                     />
+                  <br/>
                   <input
-                      className="button is-secondary border-secondary is-rounded is-fullwidth" 
+                      className="button is-small is-secondary border-primary is-rounded is-fullwidth" 
                       type="submit" 
                       value="Search"
                       onClick={() => this.searchTask()}
                   />
-                </form>
+                </div>
               </div>
             </div>
           </div>

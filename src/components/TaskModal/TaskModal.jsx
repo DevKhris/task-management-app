@@ -32,7 +32,7 @@ class TaskModal extends Component {
       			</p>
       			<br/>
       			<span>
-      				{this.props.task.completed_at}
+      				Completed at: {this.props.task.completed_at}
       			</span>
 
       			<br/>

@@ -83,7 +83,7 @@ class TaskItem extends Component {
 	render(props)
 	{	
 		return(
-			<div className="my-3 border-secondary">
+			<div className="my-4">
 				<EditTaskModal task={this.props.task} onRefresh={this.props.onRefresh}/>
 				<TaskModal task={this.props.task}/>
 				<article className="media">
@@ -114,17 +114,17 @@ class TaskItem extends Component {
 				   		</div>
 				   	</div>
 			    	<div className="media-right">
-			    		<div className="level">
+			    		<div className="level is-inline ">
 			    			<input
 			    	 			name="edit"
-			    	 			className="button is-small is-primary is-rounded mx-1" 
+			    	 			className="button is-fullwidth is-small is-primary is-rounded mx-1" 
 			    	 			type="submit" 
 			    	 			onClick={() => this.showModal(this.props.task, '#e-')}
 			    	 			value="Edit"
 			    	 		/>	    	
 			    	 		<input
 			    	 			name="delete"
-			    	 			className="button is-small is-danger is-rounded mx-1" 
+			    	 			className="button is-fullwidth is-small is-danger is-rounded mx-1" 
 			    	 			type="submit" 
 			    	 			onClick={() => this.deleteTask(this.props.task.id)}
 			    	 			value="Delete"
