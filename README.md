@@ -49,3 +49,24 @@ or
 #### Use
 
 Open [http://localhost:3000](http://localhost:3000) to view it on browser.
+
+
+#### Building for Static Server
+
+You can also build the app by running the next command:
+```bash
+
+	npm run build
+
+```
+
+Once build you can deploy it by serving it with a static server:
+
+```bash
+
+	npm install -g serve
+ 
+ 	serve -s build
+
+
+```
