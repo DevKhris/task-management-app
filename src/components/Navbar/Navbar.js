@@ -1,10 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-const Navbar = () => {
+function Navbar() {
 	return (
 		<nav className="navbar" role="navigation" aria-label="main navigation">
 			<div className="navbar-brand">
 				<p className="navbar-item">
+					<img src="logo192.png" alt="" />
 					Task App
 				</p>
 			</div>
@@ -15,7 +16,7 @@ const Navbar = () => {
 				</div>
 			</div>
 		</nav>
-	);
+	)
 }
 
-export default Navbar;
+export default Navbar
